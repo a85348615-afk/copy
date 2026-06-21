@@ -461,7 +461,8 @@ fig1 = px.bar(
     x="Count",
     y="Violation Type",
     orientation="h",
-    title="Top Violation Categories"
+    title="Top Violation Categories",
+    template="plotly_white"
 )
 
 fig1.update_layout(
@@ -500,7 +501,8 @@ fig2 = px.bar(
     x="Violations",
     y="Junction",
     orientation="h",
-    title="Top Parking Congestion Hotspots"
+    title="Top Parking Congestion Hotspots",
+    template="plotly_white"
 )
 
 fig2.update_layout(
@@ -538,7 +540,8 @@ fig3 = px.bar(
     x="Violations",
     y="Police Station",
     orientation="h",
-    title="Most Active Enforcement Areas"
+    title="Most Active Enforcement Areas",
+    template="plotly_white"
 )
 
 fig3.update_layout(
@@ -575,7 +578,8 @@ fig4 = px.pie(
     vehicles,
     names="Vehicle",
     values="Count",
-    title="Vehicle Type Distribution"
+    title="Vehicle Type Distribution",
+    template="plotly_white"
 )
 
 st.plotly_chart(
