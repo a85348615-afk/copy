@@ -32,7 +32,7 @@ def load_data():
         / "parking_violations.csv"
     )
 
-    df = pd.read_csv(csv_path, nrows=50000)
+    df = pd.read_csv(csv_path)
 
     def extract_primary_violation(x):
         try:
@@ -112,7 +112,7 @@ risk_score = min(
     100,
     int(
         (
-            len(df) / 300000
+            len(df) / 298450
         ) * 100
     )
 )
