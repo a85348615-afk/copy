@@ -32,7 +32,7 @@ def load_data():
         / "parking_violations.csv"
     )
 
-    df = pd.read_csv(csv_path, nrows=50000)
+    df = pd.read_csv(csv_path)
 
     df["junction_name"] = (
         df["junction_name"]
@@ -648,7 +648,8 @@ fig = px.bar(
     chart_df,
     x="Junction",
     y="Violation Count",
-    title="Top 5 Hotspots"
+    title="Top 5 Hotspots",
+    template="plotly_white"
 )
 
 fig.update_layout(
