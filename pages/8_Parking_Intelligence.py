@@ -354,20 +354,15 @@ MIN_STATIONARY_FRAMES  = 3      # min processed frames before calling stationary
 
 # ─────────────────────────────────────────────────────────────
 # OCR / SIGN DETECTION
+# easyocr disabled on Railway (too heavy for cloud deployment)
+# Sign detection uses fast color+shape heuristic only
 # ─────────────────────────────────────────────────────────────
 _HAS_OCR = False
 _ocr_reader = None
 
 def _get_ocr_reader():
-    global _ocr_reader, _HAS_OCR
-    if _ocr_reader is None:
-        try:
-            import easyocr
-            _ocr_reader = easyocr.Reader(["en"], verbose=False)
-            _HAS_OCR = True
-        except Exception:
-            _HAS_OCR = False
-    return _ocr_reader
+    # OCR disabled - returns None, color heuristic handles sign detection
+    return None
 
 _NO_PARKING_KW = [
     "no parking", "no parking area", "tow away zone",
@@ -682,7 +677,7 @@ def process_image(img_bgr: np.ndarray) -> dict:
     annotated, total_count, counts, detected_vehicles = detect_vehicles(img_bgr)
 
     # Detect NO PARKING signs (OCR enabled for images)
-    sign_zones = detect_no_parking_signs(img_bgr, use_ocr=True)
+    sign_zones = detect_no_parking_signs(img_bgr, use_ocr=False)
 
     # Draw the orange NO PARKING border on the clean frame
     annotated = draw_sign_zones(annotated, sign_zones)
